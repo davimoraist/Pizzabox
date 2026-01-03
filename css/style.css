@@ -1,0 +1,13 @@
+/*link de font do google*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+:root{
+    --font1: 'Irish Grover', system-ui;
+    --font2: 'Bricolage Grotesque', system-ui;
+
+    --cor1: #FFCC5F;
+    --cor2: #DDBE7C;
+    --cor3: #08954C;
+    --cor4: #ff0000;
+}
