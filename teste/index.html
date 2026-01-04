@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+    
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+.menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    background-color: #DDBE7C;
+    overflow: hidden;
+    transition: 0.4s;
+    z-index: 999;
+    padding: 0px;
+}
+
+form{
+    margin: 0px 40px;
+}
+
+input{
+    border: none;
+    height: 30px;
+    font-size: 25px;
+}
+
+.menu.aberto{
+    width: 600px;
+}
+
+.menu h3{
+    margin-bottom: 20px;
+}
+
+.menu input,
+.menu textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-enviar{
+    background-color: #08954C;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-fechar{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-abrir{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #08954C;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+ <div class="menu" id="menuPedido">
+    <button class="btn-fechar" onclick="toggleMenu()">✕</button>
+
+    <h3>🍕 Seu Pedido</h3>
+
+    <form id="formPedido">
+        <label>Nome completo</label>
+        <input type="text" id="nome" required>
+
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" id="telefone" required>
+
+        <label>CEP</label>
+        <input type="text" id="cep" maxlength="9" onblur="buscarCEP()" required>
+
+        <label>Rua</label>
+        <input type="text" id="rua" required>
+
+        <label>Número da casa</label>
+        <input type="number" id="numero" required>
+
+        <label>Bairro</label>
+        <input type="text" id="bairro" required>
+
+        <label>Cidade</label>
+        <input type="text" id="cidade" required>
+
+        <label>Estado</label>
+        <input type="text" id="estado" required>
+
+        <button type="button" class="btn-enviar" onclick="enviarPedido()">
+            Enviar Pedido
+        </button>
+    </form>
+</div>
+
+<button class="btn-abrir" onclick="toggleMenu()">🛒</button>
+
+ <script>
+function toggleMenu(){
+    document.getElementById('menuPedido').classList.toggle('aberto')
+}
+
+function buscarCEP(){
+    const cep = document.getElementById('cep').value.replace(/\D/g,'')
+
+    if(cep.length !== 8) return
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json())
+        .then(dados => {
+            if(dados.erro){
+                alert('CEP não encontrado')
+                return
+            }
+            document.getElementById('rua').value = dados.logradouro
+            document.getElementById('bairro').value = dados.bairro
+            document.getElementById('cidade').value = dados.localidade
+            document.getElementById('estado').value = dados.uf
+        })
+}
+
+function enviarPedido(){
+    const nome = document.getElementById('nome').value
+    const telefone = document.getElementById('telefone').value
+    const rua = document.getElementById('rua').value
+    const numero = document.getElementById('numero').value
+    const bairro = document.getElementById('bairro').value
+    const cidade = document.getElementById('cidade').value
+    const estado = document.getElementById('estado').value
+    const cep = document.getElementById('cep').value
+
+    if(!nome || !telefone || !rua || !numero){
+        alert('Preencha todos os campos obrigatórios!')
+        return
+    }
+
+    const mensagem = `
+🍕 Pedido Pizzabox
+👤 Nome: ${nome}
+📞 Telefone: ${telefone}
+
+📍 Endereço:
+${rua}, Nº ${numero}
+Bairro: ${bairro}
+Cidade: ${cidade} - ${estado}
+CEP: ${cep}
+    `
+
+    const telefonePizzaria = '5561575256'
+    const url = `https://wa.me/${telefonePizzaria}?text=${encodeURIComponent(mensagem)}`
+    window.open(url, '_blank')
+}
+</script>
+
+
+</body>
+</html>

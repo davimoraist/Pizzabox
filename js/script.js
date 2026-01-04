@@ -22,19 +22,4 @@ if (horaEmMinutos < abertura || horaEmMinutos > fechamento) {
     document.getElementById('menuPedido').classList.toggle('aberto')
 }
 
-function enviarPedido(){
-    const nome = document.getElementById('nome').value
-    const whats = document.getElementById('whats').value
-    const pedido = document.getElementById('pedido').value
-
-    if(nome === '' || whats === '' || pedido === ''){
-        alert('Preencha todos os campos!')
-        return
-    }
-
-    const msg = `Olá! Meu nome é ${nome}. Pedido: ${pedido}`
-    const telefone = '5599999999999' // WhatsApp da pizzaria
-
-    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`
-    window.open(url, '_blank')
-}
+ 
