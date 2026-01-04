@@ -1,10 +1,10 @@
-@charset "UTF-8";
+ @charset "UTF-8";
 
-/*link de font do google*/
+/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
 
-:root{
+:root {
     --font1: 'Irish Grover', system-ui;
     --font2: 'Bricolage Grotesque', system-ui;
 
@@ -12,4 +12,201 @@
     --cor2: #DDBE7C;
     --cor3: #08954C;
     --cor4: #ff0000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor1);
+    font-family: var(--font2);
+}
+
+/* ===== HEADER ===== */
+header {
+    background-image: url(../img/Lucid_Origin_Pizza_artesanal_sendo_retirada_de_um_forno_a_lenh_0.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+header img {
+    width: 300px;
+    max-width: 90%;
+}
+
+header h1 {
+    font-family: var(--font1);
+    font-size: 8vh;
+    margin: 20px 0;
+    -webkit-text-stroke: 1px #ff0000;
+}
+
+header p {
+    background-color: var(--cor3);
+    font-family: var(--font1);
+    font-size: 24px;
+    padding: 20px 40px;
+    margin: 30px auto;
+    width: fit-content;
+    border-radius: 60px 30px 60px 30px;
+}
+
+
+ .menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    background-color: #DDBE7C;
+    overflow: hidden;
+    transition: 0.4s;
+    z-index: 999;
+    padding: 20px;
+}
+
+.menu.aberto{
+    width: 320px;
+}
+
+.menu h3{
+    margin-bottom: 20px;
+}
+
+.menu input,
+.menu textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-enviar{
+    background-color: #08954C;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-fechar{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-abrir{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #08954C;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* ===== TEXTO ===== */
+.texto-pizzabox h2 {
+    font-family: var(--font1);
+    font-size: 5vh;
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    -webkit-text-stroke: 1px #ff0000;
+}
+
+.texto-pizzabox p {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 30px;
+}
+
+/* ===== CARDÁPIO ===== */
+.cardapio-pizza {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 100px 0;
+    flex-wrap: wrap;
+}
+
+.cardapio h2 {
+    text-align: center;
+    background-color: var(--cor4);
+    color: white;
+    font-size: 5vh;
+    padding: 40px 0;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+/* ===== BOX PIZZA ===== */
+.cardapio .box {
+    background-color: var(--cor2);
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+    border-radius: 20px;
+}
+
+.cardapio .box img {
+    width: 250px;
+    max-width: 100%;
+}
+
+/* ===== TÍTULO LATERAL ===== */
+.cardapio h3 {
+    background-color: var(--cor3);
+    color: white;
+    font-size: 36px;
+    padding: 25px 40px;
+    border-radius: 0 100px 100px 0;
+    width: fit-content;
+    margin: 80px 0 40px;
+}
+
+/* ===== TEXTO ===== */
+.cardapio .box h4,
+.cardapio .box p {
+    padding: 10px;
+}
+
+/* ===== BOTÃO ===== */
+.cardapio button {
+    border: none;
+    background-color: var(--cor3);
+    padding: 20px 40px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    margin-top: 15px;
+}
+
+.cardapio button:hover {
+    background-color: #09d16a;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 5vh;
+    }
+
+    .texto-pizzabox p {
+        font-size: 22px;
+    }
+
+    .cardapio .box {
+        width: 90%;
+    }
 }
