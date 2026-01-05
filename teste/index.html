@@ -142,23 +142,24 @@ function buscarCEP(){
         })
 }
 
-function enviarPedido(){
-    const nome = document.getElementById('nome').value
-    const telefone = document.getElementById('telefone').value
-    const rua = document.getElementById('rua').value
-    const numero = document.getElementById('numero').value
-    const bairro = document.getElementById('bairro').value
-    const cidade = document.getElementById('cidade').value
-    const estado = document.getElementById('estado').value
-    const cep = document.getElementById('cep').value
+ function enviarPedido(){
+    const nome = document.getElementById('nome').value.trim()
+    const telefone = document.getElementById('telefone').value.trim()
+    const rua = document.getElementById('rua').value.trim()
+    const numero = document.getElementById('numero').value.trim()
+    const bairro = document.getElementById('bairro').value.trim()
+    const cidade = document.getElementById('cidade').value.trim()
+    const estado = document.getElementById('estado').value.trim()
+    const cep = document.getElementById('cep').value.trim()
 
-    if(!nome || !telefone || !rua || !numero){
-        alert('Preencha todos os campos obrigatórios!')
+    if(!nome || !telefone || !rua || !numero || !bairro || !cidade || !estado || !cep){
+        alert('Preencha todos os campos!')
         return
     }
 
-    const mensagem = `
-🍕 Pedido Pizzabox
+    const mensagem =
+`🍕 Pedido Pizzabox
+
 👤 Nome: ${nome}
 📞 Telefone: ${telefone}
 
@@ -166,11 +167,13 @@ function enviarPedido(){
 ${rua}, Nº ${numero}
 Bairro: ${bairro}
 Cidade: ${cidade} - ${estado}
-CEP: ${cep}
-    `
+CEP: ${cep}`
 
-    const telefonePizzaria = '5561575256'
-    const url = `https://wa.me/${telefonePizzaria}?text=${encodeURIComponent(mensagem)}`
+    // ⚠️ MUDE PARA UM NÚMERO REAL
+    const telefonePizzaria = '556195756256'
+
+    const url = 'https://wa.me/' + telefonePizzaria + '?text=' + encodeURIComponent(mensagem)
+
     window.open(url, '_blank')
 }
 </script>

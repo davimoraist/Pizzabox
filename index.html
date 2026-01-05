@@ -23,7 +23,7 @@
     <h2>Pizzabox – A Caixa Cheia de Sabor</h2>
     <p>
         Aqui, cada pizza é preparada com dedicação, ingredientes selecionados e uma
-        massa leve que garante o sabor perfeito em cada fatia.
+        massa leve que garante o sabor perfeito em cada fatia. <br>
         Nossa missão é entregar não apenas comida, mas uma experiência deliciosa,
         da primeira mordida até o último pedaço.
     </p>
@@ -32,7 +32,47 @@
     <h2>PIZZA</h2>
     <h3>PIZZAS CLÁSSICAS</h3>
 
+     <div class="menu" id="menuPedido">
+    <button class="btn-fechar" onclick="toggleMenu()">✕</button>
+
+    <h3>🍕 Seu Pedido</h3>
+
+    <form id="formPedido">
+        <label>Nome completo</label>
+        <input type="text" id="nome" required>
+
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" id="telefone" required>
+
+        <label>CEP</label>
+        <input type="text" id="cep" maxlength="9" onblur="buscarCEP()" required>
+
+        <label>Rua</label>
+        <input type="text" id="rua" required>
+
+        <label>Número da casa</label>
+        <input type="number" id="numero" required>
+
+        <label>Bairro</label>
+        <input type="text" id="bairro" required>
+
+        <label>Cidade</label>
+        <input type="text" id="cidade" required>
+
+        <label>Estado</label>
+        <input type="text" id="estado" required>
+
+        <button type="button" class="btn-enviar" onclick="enviarPedido()">
+            Enviar Pedido
+        </button>
+    </form>
+</div>
+
+<button class="btn-abrir" onclick="toggleMenu()">🛒</button>
+
+ <section class="cardapio">    
     
+
     <!-- LINHA 1 -->
     <div class="cardapio-pizza">
         <div class="box">
@@ -40,7 +80,7 @@
             <h4>Margherita</h4>
             <p>Massa leve com molho de tomate artesanal, mussarela derretida e manjericão fresco.</p>
             <p><strong>R$ 32,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Margherita ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -48,9 +88,9 @@
         <div class="box">
             <img src="img/pizza-_calabresa-3.png" alt="Pizza Calabresa">
             <h4>Calabresa Tradicional</h4>
-            <p>Calabresa selecionada fatiada, cebola dourada, mussarela e toque de orégano.</p>
+            <p>Calabresa selecionada fatiada, cebola dourada, mussarela e orégano.</p>
             <p><strong>R$ 35,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Calabresa ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -60,7 +100,7 @@
             <h4>Mussarela Extra</h4>
             <p>Mussarela de alta qualidade com molho de tomate suave e orégano.</p>
             <p><strong>R$ 31,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Mussarela ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -71,9 +111,9 @@
         <div class="box">
             <img src="img/pizza-frango-8.png" alt="Pizza Frango com Catupiry">
             <h4>Frango com Catupiry</h4>
-            <p>Frango desfiado temperado na medida certa, coberto com catupiry original.</p>
+            <p>Frango desfiado temperado com catupiry original.</p>
             <p><strong>R$ 39,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Frango com Catupiry ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -83,7 +123,7 @@
             <h4>Portuguesa</h4>
             <p>Presunto, queijo, ovos, palmito, ervilha, cebola e azeitonas.</p>
             <p><strong>R$ 42,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Portuguesa ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -91,9 +131,9 @@
         <div class="box">
             <img src="img/Pizza-napolitana_-6.png" alt="Pizza Napolitana">
             <h4>Napolitana</h4>
-            <p>Molho fresco, rodelas de tomate, mussarela e orégano.</p>
+            <p>Molho fresco, tomate, mussarela e orégano.</p>
             <p><strong>R$ 34,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Napolitana ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -106,7 +146,7 @@
             <h4>Quatro Queijos</h4>
             <p>Mussarela, parmesão, provolone e catupiry formando um mix cremoso.</p>
             <p><strong>R$ 44,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Quatro Queijos ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -116,42 +156,43 @@
             <h4>Pepperoni Classic</h4>
             <p>Farta camada de pepperoni crocante sobre mussarela especial.</p>
             <p><strong>R$ 45,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Pepperoni ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
     </div>
 
+    <!-- ===== PIZZAS DOCES ===== -->
+    <h3>Pizzas Doces</h3>
 
-    <h3>PIZZAS CLÁSSICAS</h3>
     <!-- LINHA 1 -->
     <div class="cardapio-pizza">
         <div class="box">
-            <img src="img/_Pizza-Margherita-5.png" alt="Pizza Margherita">
-            <h4>Margherita</h4>
-            <p>Massa leve com molho de tomate artesanal, mussarela derretida e manjericão fresco.</p>
-            <p><strong>R$ 32,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Margherita ao carrinho">
+            <img src="img/pizza-Chocolate-ao-leite-9.png" alt="Pizza Chocolate ao Leite">
+            <h4>Chocolate ao Leite</h4>
+            <p>Chocolate cremoso cobrindo uma massa leve e fofinha.</p>
+            <p><strong>R$ 36,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
         <div class="box">
-            <img src="img/pizza-_calabresa-3.png" alt="Pizza Calabresa">
-            <h4>Calabresa Tradicional</h4>
-            <p>Calabresa selecionada fatiada, cebola dourada, mussarela e toque de orégano.</p>
-            <p><strong>R$ 35,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Calabresa ao carrinho">
+            <img src="img/pizza-Brigadeiro-Box-10.png" alt="Pizza Brigadeiro Box">
+            <h4>Brigadeiro Box</h4>
+            <p>Brigadeiro caseiro com granulado crocante.</p>
+            <p><strong>R$ 39,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
         <div class="box">
-            <img src="img/pizza-mussarela-2.png" alt="Pizza Mussarela">
-            <h4>Mussarela Extra</h4>
-            <p>Mussarela de alta qualidade com molho de tomate suave e orégano.</p>
-            <p><strong>R$ 31,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Mussarela ao carrinho">
+            <img src="img/pizza-Romeu-e-Julieta-11.png" alt="Pizza Romeu e Julieta">
+            <h4>Romeu e Julieta</h4>
+            <p>Queijo fresco derretido com goiabada tradicional.</p>
+            <p><strong>R$ 42,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -160,31 +201,31 @@
     <!-- LINHA 2 -->
     <div class="cardapio-pizza">
         <div class="box">
-            <img src="img/pizza-frango-8.png" alt="Pizza Frango com Catupiry">
-            <h4>Frango com Catupiry</h4>
-            <p>Frango desfiado temperado na medida certa, coberto com catupiry original.</p>
-            <p><strong>R$ 39,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Frango com Catupiry ao carrinho">
+            <img src="img/pizza-Prestígio-15.png" alt="Pizza Prestígio">
+            <h4>Prestígio</h4>
+            <p>Chocolate ao leite com coco fresco ralado.</p>
+            <p><strong>R$ 44,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
         <div class="box">
-            <img src="img/Pizza-portuguesa-7.png" alt="Pizza Portuguesa">
-            <h4>Portuguesa</h4>
-            <p>Presunto, queijo, ovos, palmito, ervilha, cebola e azeitonas.</p>
-            <p><strong>R$ 42,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Portuguesa ao carrinho">
+            <img src="img/Pizza-portuguesa-7.png" alt="Pizza Banana Caramelizada">
+            <h4>Banana Caramelizada</h4>
+            <p>Banana, açúcar queimado e canela. Simples e deliciosa.</p>
+            <p><strong>R$ 38,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
         <div class="box">
-            <img src="img/Pizza-napolitana_-6.png" alt="Pizza Napolitana">
-            <h4>Napolitana</h4>
-            <p>Molho fresco, rodelas de tomate, mussarela e orégano.</p>
-            <p><strong>R$ 34,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Napolitana ao carrinho">
+            <img src="img/_piza-Sensação-13.png" alt="Pizza Sensação">
+            <h4>Sensação</h4>
+            <p>Chocolate + morangos frescos. Perfeita para fechar com chave de ouro.</p>
+            <p><strong>R$ 49,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
@@ -193,25 +234,28 @@
     <!-- LINHA 3 -->
     <div class="cardapio-pizza">
         <div class="box">
-            <img src="img/_Pizza-quatro-queijo-1.png" alt="Pizza Quatro Queijos">
-            <h4>Quatro Queijos</h4>
-            <p>Mussarela, parmesão, provolone e catupiry formando um mix cremoso.</p>
-            <p><strong>R$ 44,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Quatro Queijos ao carrinho">
+            <img src="img/pizza-Chocolate-Branco-Crocante-14.png" alt="Pizza Chocolate Branco Crocante">
+            <h4>Chocolate Branco Crocante</h4>
+            <p>Chocolate branco derretido com raspas crocantes.</p>
+            <p><strong>R$ 41,90</strong></p>
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
+        <!-- Nova pizza doce para chegar a 16 -->
         <div class="box">
-            <img src="img/_Pizza-pepperoni-4.png" alt="Pizza Pepperoni">
-            <h4>Pepperoni Classic</h4>
-            <p>Farta camada de pepperoni crocante sobre mussarela especial.</p>
+            <img src="img/_pizza-Leite-com-Morango-16.png" alt="Pizza Doce de Leite com Morango">
+            <h4>Doce de Leite com Morango</h4>
+            <p> Doce de leite cremoso espalhado sobre a massa leve, finalizado com morangos frescos fatiados. Equilíbrio perfeito entre doçura e frescor.</p>
             <p><strong>R$ 45,90</strong></p>
-            <button class="btn-carrinho" aria-label="Adicionar Pepperoni ao carrinho">
+            <button class="btn-carrinho">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
     </div>
+
+</section>
 
     <h2>BEBIDAS</h2>
 </section>

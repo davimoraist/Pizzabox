@@ -22,4 +22,60 @@ if (horaEmMinutos < abertura || horaEmMinutos > fechamento) {
     document.getElementById('menuPedido').classList.toggle('aberto')
 }
 
- 
+function toggleMenu(){
+    document.getElementById('menuPedido').classList.toggle('aberto')
+}
+
+function buscarCEP(){
+    const cep = document.getElementById('cep').value.replace(/\D/g,'')
+
+    if(cep.length !== 8) return
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json())
+        .then(dados => {
+            if(dados.erro){
+                alert('CEP não encontrado')
+                return
+            }
+            document.getElementById('rua').value = dados.logradouro
+            document.getElementById('bairro').value = dados.bairro
+            document.getElementById('cidade').value = dados.localidade
+            document.getElementById('estado').value = dados.uf
+        })
+}
+
+ function enviarPedido(){
+    const nome = document.getElementById('nome').value.trim()
+    const telefone = document.getElementById('telefone').value.trim()
+    const rua = document.getElementById('rua').value.trim()
+    const numero = document.getElementById('numero').value.trim()
+    const bairro = document.getElementById('bairro').value.trim()
+    const cidade = document.getElementById('cidade').value.trim()
+    const estado = document.getElementById('estado').value.trim()
+    const cep = document.getElementById('cep').value.trim()
+
+    if(!nome || !telefone || !rua || !numero || !bairro || !cidade || !estado || !cep){
+        alert('Preencha todos os campos!')
+        return
+    }
+
+    const mensagem =
+`🍕 Pedido Pizzabox
+
+👤 Nome: ${nome}
+📞 Telefone: ${telefone}
+
+📍 Endereço:
+${rua}, Nº ${numero}
+Bairro: ${bairro}
+Cidade: ${cidade} - ${estado}
+CEP: ${cep}`
+
+    // ⚠️ MUDE PARA UM NÚMERO REAL
+    const telefonePizzaria = '556195756256'
+
+    const url = 'https://wa.me/' + telefonePizzaria + '?text=' + encodeURIComponent(mensagem)
+
+    window.open(url, '_blank')
+}
