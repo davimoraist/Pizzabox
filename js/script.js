@@ -79,3 +79,15 @@ CEP: ${cep}`
 
     window.open(url, '_blank')
 }
+
+var margherita = document.getElementById('margherita')
+
+
+function verpedido(){
+   document.getElementById('verpedido').classList.toggle('aberto')   
+
+   function margherita(){
+            
+    }
+
+}

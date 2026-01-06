@@ -124,6 +124,29 @@ input{
     cursor: pointer;
 }
 
+ .ver-pedido{
+ 
+}
+
+.pedido{
+    position: fixed;
+    right: -320px;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: #DDBE7C;
+    transition: 0.4s;
+    z-index: 999;
+    padding: 20px;
+}
+
+.pedido.aberto{
+    right: 0;
+}
+
+
+ 
+
 .texto-pizzabox{
     text-align: center;
     font-size: 20px;
@@ -225,3 +248,5 @@ input{
         width: 90%;
     }
 }
+
+

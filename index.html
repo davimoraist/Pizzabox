@@ -61,7 +61,10 @@
 
         <label>Estado</label>
         <input type="text" id="estado" required>
-
+        <div>
+            <p class="total">Total: </p>
+         <button type="button" class="ver-Pedido" onclick="verpedido()">Ver Pedido</button>
+        </div>
         <button type="button" class="btn-enviar" onclick="enviarPedido()">
             Enviar Pedido
         </button>
@@ -75,55 +78,55 @@
 
     <!-- LINHA 1 -->
     <div class="cardapio-pizza">
-        <div class="box">
+        <div class="box" id="Margherita">
             <img src="img/_Pizza-Margherita-5.png" alt="Pizza Margherita">
             <h4>Margherita</h4>
             <p>Massa leve com molho de tomate artesanal, mussarela derretida e manjericão fresco.</p>
             <p><strong>R$ 32,90</strong></p>
-            <button class="btn-carrinho">
+            <button class="btn-carrinho" onclick="margherita()">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
-        <div class="box">
+        <div class="box" id="Calabresa">
             <img src="img/pizza-_calabresa-3.png" alt="Pizza Calabresa">
             <h4>Calabresa Tradicional</h4>
             <p>Calabresa selecionada fatiada, cebola dourada, mussarela e orégano.</p>
             <p><strong>R$ 35,90</strong></p>
-            <button class="btn-carrinho">
+            <button class="btn-carrinho" onclick="Calabresa()">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
-        <div class="box">
+        <div class="box" id="mussarela">
             <img src="img/pizza-mussarela-2.png" alt="Pizza Mussarela">
             <h4>Mussarela Extra</h4>
             <p>Mussarela de alta qualidade com molho de tomate suave e orégano.</p>
             <p><strong>R$ 31,90</strong></p>
-            <button class="btn-carrinho">
+            <button class="btn-carrinho" onclick="mussarela()">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
     </div>
 
     <!-- LINHA 2 -->
-    <div class="cardapio-pizza">
-        <div class="box">
+    <div class="cardapio-pizza" >
+        <div class="box" id="Frango">
             <img src="img/pizza-frango-8.png" alt="Pizza Frango com Catupiry">
             <h4>Frango com Catupiry</h4>
             <p>Frango desfiado temperado com catupiry original.</p>
             <p><strong>R$ 39,90</strong></p>
-            <button class="btn-carrinho">
+            <button class="btn-carrinho" onclick="frango()">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
 
-        <div class="box">
+        <div class="box" id="Portuguesa">
             <img src="img/Pizza-portuguesa-7.png" alt="Pizza Portuguesa">
             <h4>Portuguesa</h4>
             <p>Presunto, queijo, ovos, palmito, ervilha, cebola e azeitonas.</p>
             <p><strong>R$ 42,90</strong></p>
-            <button class="btn-carrinho">
+            <button class="btn-carrinho" onclick="Portuguesa()">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </button>
         </div>
