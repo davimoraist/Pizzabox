@@ -1,93 +1,134 @@
-var horasTexto = document.getElementById('horas')
+var cardapio = document.getElementsByClassName('cardapio')
 
-var agora = new Date()
-var horaAtual = agora.getHours()
-var minutoAtual = agora.getMinutes()
-
-// transforma tudo em minutos
-var horaEmMinutos = horaAtual * 60 + minutoAtual
-
-var abertura = 18 * 60       // 18:00
-var fechamento = 22 * 60 + 50 // 22:50
+// ================== CONTROLE DE HORÁRIO ==================
+var horasTexto = document.getElementById('horas');
+var agora = new Date();
+var horaEmMinutos = agora.getHours() * 60 + agora.getMinutes();
+var abertura = 18 * 60;
+var fechamento = 22 * 60 + 50;
 
 if (horaEmMinutos < abertura || horaEmMinutos > fechamento) {
-    horasTexto.innerHTML = "❌ FECHADO - Abrimos às 18:00"
-    horasTexto.style.backgroundColor = "#ff0000"
+    horasTexto.innerHTML = "❌ FECHADO - Abrimos às 18:00";
+    horasTexto.style.backgroundColor = "#ff0000";
 } else {
-    horasTexto.innerHTML = "✅ ABERTO - Faça seu pedido!"
-    horasTexto.style.backgroundColor = "#08954C"
+    horasTexto.innerHTML = "✅ ABERTO - Faça seu pedido!";
+    horasTexto.style.backgroundColor = "#08954C";
 }
 
- function toggleMenu(){
-    document.getElementById('menuPedido').classList.toggle('aberto')
+// ================== INTERFACE ==================
+ function toggleMenu() {
+    document.getElementById('menuPedido').classList.toggle('aberto');
 }
 
-function toggleMenu(){
-    document.getElementById('menuPedido').classList.toggle('aberto')
+// ================== CARRINHO ==================
+let totalCarrinho = 0;
+let quantidadePizzas = 0;
+let itensPedido = []; // Lista para guardar os nomes das pizzas
+
+function atualizarCarrinho() {
+    document.getElementById('quantidade').innerText = quantidadePizzas;
+    document.getElementById('total').innerText = totalCarrinho.toFixed(2).replace('.', ',');
 }
 
+// Lógica de adicionar ao carrinho
+document.querySelectorAll('.btn-carrinho').forEach(function(botao) {
+    botao.addEventListener('click', function() {
+        const box = botao.closest('.box');
+        const nomePizza = box.querySelector('h4').innerText;
+        const precoPizza = box.querySelector('p strong').innerText;
+        let precoNum = parseFloat(precoPizza.replace('R$ ', '').replace(',', '.'));
+
+        // Adiciona aos totais
+        quantidadePizzas++;
+        totalCarrinho += precoNum;
+        itensPedido.push(nomePizza); // Salva o nome para o WhatsApp
+
+        // Cria o item visual na lista
+        const lista = document.getElementById('listaCarrinho');
+        const item = document.createElement('li');
+        item.style.listStyle = "none";
+        item.style.marginBottom = "10px";
+        item.innerHTML = `✅ ${nomePizza} - ${precoPizza} 
+            <button class="remover" style="color:red; border:none; background:none; cursor:pointer; margin-left:10px;">[X]</button>`;
+        
+        lista.appendChild(item);
+        atualizarCarrinho();
+
+        // Lógica de remover
+        item.querySelector('.remover').addEventListener('click', function() {
+            lista.removeChild(item);
+            quantidadePizzas--;
+            totalCarrinho -= precoNum;
+            // Remove o nome da lista de itens
+            const index = itensPedido.indexOf(nomePizza);
+            if (index > -1) itensPedido.splice(index, 1);
+            atualizarCarrinho();
+        });
+
+        // Abre o menu lateral automaticamente ao adicionar
+        document.getElementById('menuPedido').classList.add('aberto');
+    });
+});
+
+// ================== BUSCAR CEP ==================
 function buscarCEP(){
-    const cep = document.getElementById('cep').value.replace(/\D/g,'')
-
-    if(cep.length !== 8) return
+    const cep = document.getElementById('cep').value.replace(/\D/g,'');
+    if(cep.length !== 8) return;
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then(res => res.json())
         .then(dados => {
-            if(dados.erro){
-                alert('CEP não encontrado')
-                return
+            if(!dados.erro){
+                document.getElementById('rua').value = dados.logradouro;
+                document.getElementById('bairro').value = dados.bairro;
+                document.getElementById('cidade').value = dados.localidade;
+                document.getElementById('estado').value = dados.uf;
+                document.getElementsByClassName('paga').value = dados.dinheiro
             }
-            document.getElementById('rua').value = dados.logradouro
-            document.getElementById('bairro').value = dados.bairro
-            document.getElementById('cidade').value = dados.localidade
-            document.getElementById('estado').value = dados.uf
-        })
+        });
 }
 
- function enviarPedido(){
-    const nome = document.getElementById('nome').value.trim()
-    const telefone = document.getElementById('telefone').value.trim()
-    const rua = document.getElementById('rua').value.trim()
-    const numero = document.getElementById('numero').value.trim()
-    const bairro = document.getElementById('bairro').value.trim()
-    const cidade = document.getElementById('cidade').value.trim()
-    const estado = document.getElementById('estado').value.trim()
-    const cep = document.getElementById('cep').value.trim()
+ function enviarPedido() {
+    const nome = document.getElementById('nome').value.trim();
+    const rua = document.getElementById('rua').value.trim();
+    const num = document.getElementById('numero').value.trim();
+    const bairro = document.getElementById('bairro').value.trim();
 
-    if(!nome || !telefone || !rua || !numero || !bairro || !cidade || !estado || !cep){
-        alert('Preencha todos os campos!')
-        return
+    // pegar forma de pagamento correta
+    const pagamentoSelecionado = document.querySelector('input[name="paga"]:checked');
+
+    if (!pagamentoSelecionado) {
+        alert("Escolha uma forma de pagamento!");
+        return;
     }
 
-    const mensagem =
-`🍕 Pedido Pizzabox
+    const formaPagamento = pagamentoSelecionado.value;
 
-👤 Nome: ${nome}
-📞 Telefone: ${telefone}
-
-📍 Endereço:
-${rua}, Nº ${numero}
-Bairro: ${bairro}
-Cidade: ${cidade} - ${estado}
-CEP: ${cep}`
-
-    // ⚠️ MUDE PARA UM NÚMERO REAL
-    const telefonePizzaria = '556195756256'
-
-    const url = 'https://wa.me/' + telefonePizzaria + '?text=' + encodeURIComponent(mensagem)
-
-    window.open(url, '_blank')
-}
-
-var margherita = document.getElementById('margherita')
-
-
-function verpedido(){
-   document.getElementById('verpedido').classList.toggle('aberto')   
-
-   function margherita(){
-            
+    if (!nome || itensPedido.length === 0 || !rua) {
+        alert("Preencha seu nome, endereço e adicione itens ao carrinho!");
+        return;
     }
 
+    const listaParaWhatsApp = itensPedido
+        .map(sabor => `Pizza ${sabor}`)
+        .join('\n- ');
+
+    const mensagem = encodeURIComponent(
+`🍕 *NOVO PEDIDO - PIZZABOX* 🍕
+
+👤 *Cliente:* ${nome}
+📍 *Endereço:* ${rua}, Nº ${num}
+🏘️ *Bairro:* ${bairro}
+
+💳 *Pagamento:* ${formaPagamento}
+
+🛒 *ITENS:*
+- ${listaParaWhatsApp}
+
+💰 *TOTAL:* R$ ${totalCarrinho.toFixed(2).replace('.', ',')}
+`
+    );
+
+    const fone = "556195756256";
+    window.open(`https://wa.me/${fone}?text=${mensagem}`, '_blank');
 }

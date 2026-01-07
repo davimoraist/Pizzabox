@@ -26,38 +26,61 @@ body {
 }
 
 /* ===== HEADER ===== */
-header {
+ header {
     background-image: url(../img/Lucid_Origin_Pizza_artesanal_sendo_retirada_de_um_forno_a_lenh_0.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 60px 20px;
-    text-align: center;
+    padding: 10vh 5%; /* Padding lateral em % ajuda na responsividade */
+    min-height: 60vh; /* Garante uma altura mínima boa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 header img {
-    width: 300px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 300px; /* Não passa de 300px, mas diminui se a tela for menor */
+    height: auto;
 }
 
 header h1 {
     font-family: var(--font1);
-    font-size: 8vh;
+    /* clamp(tamanho_mínimo, tamanho_ideal, tamanho_máximo) */
+    font-size: clamp(2.5rem, 10vw, 5rem); 
     margin: 20px 0;
     -webkit-text-stroke: 1px #ff0000;
+    line-height: 1.1; /* Melhora a leitura se o título quebrar linha */
 }
 
 header p {
     background-color: var(--cor3);
     font-family: var(--font1);
-    font-size: 24px;
-    padding: 20px 40px;
-    margin: 30px auto;
+    font-size: clamp(1rem, 4vw, 1.5rem); /* Fonte ajustável */
+    padding: 15px 30px;
+    margin: 20px auto;
     width: fit-content;
-    border-radius: 60px 30px 60px 30px;
+    max-width: 90%; /* Impede que saia da tela em celulares pequenos */
+    border-radius: 60px 30px; /* Simplificado para manter o estilo */
+    text-align: center;
 }
 
+@media (max-width: 480px) {
+    header {
+        padding: 40px 10px;
+    }
+    
+    header h1 {
+        -webkit-text-stroke: 0.5px #ff0000; /* Linha mais fina em telas pequenas */
+    }
+
+    /* Se o formulário estiver dentro do header ou abaixo */
+    input {
+        font-size: 18px; /* Evita o zoom automático do iOS ao clicar no campo */
+    }
+}
 
  .menu{
     position: fixed;
@@ -70,6 +93,7 @@ header p {
     transition: 0.4s;
     z-index: 999;
     padding: 0px;
+    
 }
 
 form{
@@ -81,38 +105,135 @@ input{
     height: 30px;
     font-size: 25px;
 }
-
-.menu.aberto{
-    width: 600px;
+ /* FUNDO ESCURO */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 998;
 }
 
-.menu h3{
-    margin-bottom: 20px;
+/* MENU */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 420px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
 }
 
-.menu input,textarea{
+/* MENU ABERTO */
+.menu.aberto {
+    right: 0;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .menu {
+        width: 100%;
+    }
+}
+
+/* TITULOS */
+.menu h3 {
+    margin: 15px 0;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* LABELS */
+.menu label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* INPUTS */
+.menu input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-
-.btn-enviar{
-    background-color: #08954C;
-    color: white;
-    border: none;
     padding: 12px;
-    width: 100%;
-    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 8px 0 15px;
+    font-size: 14px;
 }
 
-.btn-fechar{
+.menu input:focus {
+    border-color: #08954C;
+    outline: none;
+}
+
+/* FORMA DE PAGAMENTO */
+.menu label input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* CARRINHO */
+#listaCarrinho {
+    list-style: none;
+    padding: 0;
+}
+
+#listaCarrinho li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f7f7;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* BOTÃO REMOVER */
+#listaCarrinho .remover {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* BOTÃO ENVIAR */
+.btn-enviar {
+    background-color: #08954C;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-enviar:hover {
+    background-color: #067a3d;
+}
+
+/* BOTÃO FECHAR */
+.btn-fechar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
 }
 
-.btn-abrir{
+/* BOTÃO ABRIR */
+.btn-abrir {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -121,31 +242,30 @@ input{
     border: none;
     padding: 15px;
     border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 900;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+ 
+.paga {
+    display: flex;
+    align-items: center;   /* Deixa a bolinha na mesma altura do texto */
+    gap: 15px;             /* Distância exata entre a bolinha e a palavra */
     cursor: pointer;
 }
 
- .ver-pedido{
- 
+.paga input {
+    width: auto;           /* Impede que o rádio tente ocupar 100% da largura */
+    margin: 0;             /* Remove margens estranhas */
+    cursor: pointer;
 }
 
-.pedido{
-    position: fixed;
-    right: -320px;
-    top: 0;
-    width: 320px;
-    height: 100vh;
-    background-color: #DDBE7C;
-    transition: 0.4s;
-    z-index: 999;
-    padding: 20px;
+.paga label {
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.pedido.aberto{
-    right: 0;
-}
-
-
- 
 
 .texto-pizzabox{
     text-align: center;
@@ -156,10 +276,11 @@ input{
 }
 
 .texto-pizzabox h2{
-      font-family: var(--font1);
-    font-size: 8vh;
-    margin: 20px 0;
-    -webkit-text-stroke: 1px #ff0000;
+    font-family: var(--font1);
+    font-size: clamp(23px, -2vw, 2.5rem);
+    margin: 21px 0;
+    -webkit-text-stroke: 0.5px #ff0000;
+    line-height: 1.1;
 }
 
 

@@ -61,10 +61,32 @@
 
         <label>Estado</label>
         <input type="text" id="estado" required>
-        <div>
-            <p class="total">Total: </p>
-         <button type="button" class="ver-Pedido" onclick="verpedido()">Ver Pedido</button>
-        </div>
+
+           <h3>Forma de Pagamento</h3>
+
+            <label class="paga">
+                <input type="radio" name="paga" value="Dinheiro"> Dinheiro
+            </label><br>
+
+            <label class="paga">
+                <input type="radio" name="paga" value="Débito"> Débito
+            </label><br>
+
+            <label class="paga">
+                <input type="radio" name="paga" value="Crédito"> Crédito
+            </label><br>
+
+            <label class="paga">
+                <input type="radio" name="paga" value="PIX"> PIX
+            </label>
+
+
+ 
+          <h3>Carrinho</h3>
+        <p>Total de pizzas: <span id="quantidade">0</span></p>
+        <p>Total do carrinho: R$ <span id="total">0,00</span></p>
+        <ul id="listaCarrinho"></ul>
+
         <button type="button" class="btn-enviar" onclick="enviarPedido()">
             Enviar Pedido
         </button>
