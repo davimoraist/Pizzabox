@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzabox.com</title>
-
     <!-- Ícones Google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
@@ -83,7 +82,7 @@
 
  
           <h3>Carrinho</h3>
-        <p>Total de pizzas: <span id="quantidade">0</span></p>
+        <p>Total de pedidos: <span id="quantidade">0</span></p>
         <p>Total do carrinho: R$ <span id="total">0,00</span></p>
         <ul id="listaCarrinho"></ul>
 
@@ -97,7 +96,7 @@
 
  <section class="cardapio">    
     
-
+<!--pizza-->
     <!-- LINHA 1 -->
     <div class="cardapio-pizza">
         <div class="box" id="Margherita">
@@ -280,11 +279,130 @@
         </div>
     </div>
 
-</section>
-
     <h2>BEBIDAS</h2>
+    <h3>Refrigerantes</h3>
+
+        <!-- LINHA 1 -->
+    <div class="cardapio-bebidas">
+        <div class="box">
+            <img src="img/coca-cola-lata.png" alt="coca-cola-lata (350ml)">
+            <h4>Coca-Cola Lata (350ml)</h4>
+            <p> Clássica, gelada e perfeita para acompanhar qualquer pizza.</p>
+            <p><strong>R$ 6,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box">
+            <img src="img/coca-cola1l.png" alt="coca-cola 1l">
+            <h4>Coca-Cola 1L</h4>
+            <p>Ideal para dividir com a família ou amigos</p>
+            <p><strong>R$ 9,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box" >
+            <img src="img/coca-cola2L.png" alt="coca-cola">
+            <h4>Coca Cola 2L</h4>
+            <p>Ótima para grupos maiores e pedidos completos.</p>
+            <p><strong>R$ 13,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- LINHA 2 -->
+    <div class="cardapio-bebidas" >
+        <div class="box" id="Frango">
+            <img src="img/guarana-antarctica-lata.png" alt="guarana-antarctica-lata (350ml)">
+            <h4>Guaraná Antarctica Lata (350ml)</h4>
+            <p>Sabor nacional, refrescante e leve.</p>
+            <p><strong>R$ 5,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box">
+            <img src="img/guarana antarctica2l.png" alt="guarana-antarctica 2L">
+            <h4>Guaraná Antarctica 2L</h4>
+            <p>Acompanhamento perfeito para pedidos maiores.</p>
+            <p><strong>R$ 11,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box">
+            <img src="img/fanta-laranja-lata.png" alt="fanta-laranja-lata (350ml)">
+            <h4> Fanta Laranja Lata (350ml)</h4>
+            <p>Sabores cítricos e refrescantes.</p>
+            <p><strong>R$ 5,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- LINHA 3 -->
+    <div class="cardapio-bebidas">
+        <div class="box">
+            <img src="img/fanta-uva.png" alt="fanta-uva-lata (350ml)">
+            <h4> Fanta uva Lata (350ml)</h4>
+            <p>Doce, suave e perfeita para quem gosta de sabor marcante.</p>
+            <p><strong>R$ 5,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ===== Sucos Naturais ===== -->
+    <h3>Sucos Naturais</h3>
+
+    <!-- LINHA 1 -->
+    <div class="cardapio-bebidas">
+        <div class="box">
+            <img src="img/suco-de-laranja.png" alt="socu de Laranja Natural (500ml)">
+            <h4>Suco de Laranja Natural (500ml)</h4>
+            <p>Suco feito na hora, 100% natural e refrescante.</p>
+            <p><strong>R$ 12,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box">
+            <img src="img/Suco_de_Maracujá.png" alt="socu de Maracujá Natural (500ml)">
+            <h4>Suco de Maracujá Natural (500ml)</h4>
+            <p>Sabor equilibrado entre doce e azedo, ideal para acompanhar massas.</p>
+            <p><strong>R$ 11,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+
+        <div class="box">
+            <img src="img/Suco_de_Limão.png" alt="Pizza Romeu e Julieta">
+            <h4>Suco de Limão Suíço (500ml)</h4>
+            <p>Limão batido com gelo. Simples e muito refrescante.</p>
+            <p><strong>R$ 10,90</strong></p>
+            <button class="btn-carrinho">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </button>
+        </div>
+    </div>
+
+
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.17/dist/sweetalert2.all.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
+ 
